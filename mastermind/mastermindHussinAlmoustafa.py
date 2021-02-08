@@ -4,6 +4,25 @@
      --- Date 08-02-2021"""
 import random
 
+
+
+"""
+Feedback 08/02/2021
+Comments:
+Het commenten van elke def is duidelijk.
+Taal:
+Geef er zelf niet super veel om, maar je wisselt een hoop tussen engels en nederlands, als je nederlands gebruikt is opzich handig want dan zie je meteen wat jouwn functie
+is en welke onderdelen code taal zijn.
+Bijv lijst en list.
+Leesbaarheid:
+Goed leesbaar, kan met 1 keer doorlezen precies zien wat elke def doet.
+Error(s) vangen:
+Goed gedaan, gecontroleerd op geldige invoer ja/nee.
+
+Conclusie:
+Nog een beetje je taal afwisseling verbeteren, het helpt namelijk wel met de leesbaarheid (ook voor jezelf denk ik)
+Verder gaat het goed!
+"""
 kleuren = ["A", "B", "C", "D", "E", "F"]
 
 
@@ -17,7 +36,7 @@ def aantal_moelijkhede():
     """ Een functie die alle kleuren combinatie in een list stopt """
 
     keys = "ABCDEF"
-    arr = keys
+    arr = keys #Is niet perse nodig, kan ook keys[x] doen.
     aantal_mogelijkheden = []
     for i in range(6):
         for j in range(6):
@@ -40,7 +59,7 @@ def feedback_analyze(speler_gok , kleur_code ):
     Als je een pin op de verkeerde plaats hebt maar de juiste kleur, dan krijg je een witte pin >> [0]
      Anders krijg je >> [-1]"""
 
-    feedback = [-1, -1, -1, -1]
+    feedback = [-1, -1, -1, -1] #Handig.
 
     for i in range(len(kleur_code)):
         if  speler_gok[i] == kleur_code[i]:
@@ -48,7 +67,7 @@ def feedback_analyze(speler_gok , kleur_code ):
         elif speler_gok.count(kleur_code[i]) == 1:
             feedback[i] = 0
         else:
-            feedback[i] = -1
+            feedback[i] = -1 #Deze is niet nodig, want je feedback lijst is al -1, je kan dus ook gewoon skippen en niets doen.
     print(feedback)
 
     return feedback
@@ -60,7 +79,7 @@ def Een_rondom_code(kleur_code):
      Een Functie die rondom combinatie geeft
     """
     move = []
-    available_choices = ["A", "B", "C", "D", "E", "F"]
+    available_choices = ["A", "B", "C", "D", "E", "F"] 
 
 
     for x in range(0, len(kleur_code)):
@@ -73,7 +92,7 @@ def Een_rondom_code(kleur_code):
 
 def Een_consequent_gok(gok, feedback):
     """ Een functie die een consequent gok geeft op basis van de feedback """
-    niewue_gok = []
+    niewue_gok = [] #nieuwe ipv niewue.
     feedback = feedback_analyze(gok, kleur_code)
     for i in range(0, len(gok)):
         if feedback[i] == 1 :
@@ -90,7 +109,8 @@ def Een_consequent_gok(gok, feedback):
 
 
 
-
+# Handelt op dit moment wel erg veel direct zelf, probeer wat van zijn handelingen te vertalen naar functies. Makelijker te porten naar andere media's + je kan dan later
+# voor andere opdrachten je eigen functies jatten, scheelt weer plagiaat!
 def Game():
     print(" --- MASTERMIND --- \n")
     print("Raad de geheime kleurcode in zo min mogelijk pogingen.\n")
@@ -103,7 +123,7 @@ def Game():
 
     kleur_code = random.sample(kleuren, 4)
     print(kleur_code)
-
+     
     while spelen:
         juiste_kleur = ""
         geraden_kleur = ""
@@ -111,16 +131,15 @@ def Game():
         speler_gok = input().upper()
         pogingen += 1
 
-
         if len(speler_gok) != len(kleur_code):
             print(
                 "\nDe geheime code heeft precies vier kleuren. Ik weet het, je kunt tot vier tellen. Probeer het nog eens!")
-            continue
+            continue #Niet elke keer nodig, haal er eens een paar weg en kijk of het dan nog werkt. Leuke bron: https://www.programiz.com/python-programming/break-continue
         for i in range(4):
             if speler_gok[i] not in kleuren:
                 print("\nZoek op welke kleuren je in dit spel kunt gebruiken !!!!")
                 continue
-
+     
         if juiste_kleur != "****":
             for i in range(0, len(speler_gok)):
                 if speler_gok[i] == kleur_code[i]:
@@ -134,7 +153,7 @@ def Game():
         if juiste_kleur == "****":
             if pogingen == 1:
                 print("Wauw! Je raadt het al bij de eerste poging!")
-                print("Gefsltieerd!!!! U heeft gewonen!")
+                print("Gefsltieerd!!!! U heeft gewonen!") #Gefeliciteerd! U is verder heel net nederlands, U gebruik je vooral voor leraren en ouderen. Meestal is je goed hoor ;)
             else:
                 print("Goed gedaan... Binnen " + str(pogingen) + " Keer je raadt het al.")
                 print("Gefsltieerd!!!! U heeft gewonen!")
